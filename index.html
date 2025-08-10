@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Developers - Visionary Web & Design Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --cursor-size: 10px;
+            --cursor-outline-size: 30px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #a0a0a0;
+            cursor: none;
+        }
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+        }
+        #cursor-dot {
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            background-color: #8b5cf6;
+            border-radius: 50%;
+        }
+        #cursor-outline {
+            width: var(--cursor-outline-size);
+            height: var(--cursor-outline-size);
+            border: 2px solid #8b5cf6;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        .hero-bg {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .section-bg { background-color: #111111; }
+        .card-glow {
+            background: #1a1a1a;
+            position: relative;
+            border: 1px solid #2a2a2a;
+        }
+        .card-glow:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.75rem; 
+            padding: 2px;
+            background: linear-gradient(45deg, #8b5cf6, #ec4899);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card-glow:hover:before {
+            opacity: 1;
+        }
+        .skill-bar-fill {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            transition: width 2s ease-out;
+        }
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-400">
+    <div id="cursor-dot" class="custom-cursor"></div>
+    <div id="cursor-outline" class="custom-cursor"></div>
+
+    <!-- Header -->
+    <header class="bg-black/50 backdrop-blur-md shadow-lg shadow-indigo-500/5 sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white" data-aos="fade-down">
+                Daily Developers
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-indigo-400 transition">Services</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-indigo-400 transition">Work</a>
+                <a href="#skills" class="text-gray-300 hover:text-indigo-400 transition">Skills</a>
+                <a href="#contact" class="text-gray-300 hover:text-indigo-400 transition">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-indigo-600 text-white py-2 px-5 rounded-lg hover:bg-indigo-500 transition duration-300" data-aos="fade-down" data-aos-delay="200">Get a Quote</a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4"><a href="#services" class="block text-gray-300 hover:text-indigo-400 py-2">Services</a><a href="#portfolio" class="block text-gray-300 hover:text-indigo-400 py-2">Work</a><a href="#skills" class="block text-gray-300 hover:text-indigo-400 py-2">Skills</a><a href="#contact" class="block text-gray-300 hover:text-indigo-400 py-2">Contact</a><a href="#contact" class="block bg-indigo-600 text-white mt-2 py-2 px-4 rounded-lg hover:bg-indigo-700 transition text-center">Get a Quote</a></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg">
+        <div id="three-canvas"></div>
+        <div class="container mx-auto px-6 text-center hero-content">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4" data-aos="fade-up">Visionary Digital Craft</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We engineer immersive web experiences that define the future. Your digital evolution starts here.</p>
+            <a href="#portfolio" class="bg-indigo-600 text-white py-4 px-10 rounded-full text-lg font-semibold hover:bg-indigo-500 transition duration-300 shadow-lg shadow-indigo-500/20" data-aos="fade-up" data-aos-delay="400">Explore Our Creations</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-bg py-20"><div class="container mx-auto px-6"><div class="text-center mb-16" data-aos="fade-up"><h2 class="text-4xl md:text-5xl font-bold text-white">Core Services</h2><p class="text-gray-400 mt-3 text-lg">Solutions designed for impact.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="p-8 rounded-xl text-center card-glow transition duration-300" data-aos="fade-up" data-aos-delay="100"><div class="mb-5"><svg class="w-16 h-16 mx-auto text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-white">Web Development</h3><p class="text-gray-400">High-performance, scalable, and secure web applications built with cutting-edge technologies.</p></div><div class="p-8 rounded-xl text-center card-glow transition duration-300" data-aos="fade-up" data-aos-delay="200"><div class="mb-5"><svg class="w-16 h-16 mx-auto text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-white">UI/UX Design</h3><p class="text-gray-400">Intuitive, engaging, and user-centric designs that provide a seamless and memorable user journey.</p></div><div class="p-8 rounded-xl text-center card-glow transition duration-300" data-aos="fade-up" data-aos-delay="300"><div class="mb-5"><svg class="w-16 h-16 mx-auto text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div><h3 class="text-2xl font-bold mb-3 text-white">Brand Identity</h3><p class="text-gray-400">Crafting unique and powerful brand identities that resonate and leave a lasting impression.</p></div></div></div></section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20"><div class="container mx-auto px-6"><div class="text-center mb-16" data-aos="fade-up"><h2 class="text-4xl md:text-5xl font-bold text-white">Featured Work</h2><p class="text-gray-400 mt-3 text-lg">Where innovation meets execution.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg card-glow transition duration-300" data-aos="fade-up" data-aos-delay="100"><img src="memecam.png" alt="Project One" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-2 text-white">MemeCam</h3><p class="text-gray-400 mb-4">The ultimate web app that turns your facial expressions into hilarious, shareable memes in seconds!</p><a href="https://memecamapp.vercel.app/" class="text-indigo-400 font-semibold hover:underline">View Details &rarr;</a></div></div><div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg card-glow transition duration-300" data-aos="fade-up" data-aos-delay="200"><img src="space.png" alt="Project Two" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-2 text-white">Space Exploration🚀</h3><p class="text-gray-400 mb-4">"Space Exploration🚀" is a web-based interactive quiz game where players explore the solar system, unlocking each planet by answering three space-related questions. Starting from Mercury and ending at Neptune, the game offers an educational and engaging journey through our planetary neighbors.</p><a href="https://spacexpogame.netlify.app/" class="text-indigo-400 font-semibold hover:underline">View Details &rarr;</a></div></div><div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg card-glow transition duration-300" data-aos="fade-up" data-aos-delay="300"><img src="timekeeper.png" alt="Project Three" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-2 text-white">Timekeeper</h3><p class="text-gray-400 mb-4">Timekeeper is an interactive web app that visualizes your life in weeks using a dynamic doughnut chart. Inspired by WaitButWhy’s Life Calendar.</p><a href="https://nitinyadav2188.github.io/Timekeeper/" target="_blank" class="text-indigo-400 font-semibold hover:underline">View Details &rarr;</a></div></div></div></div></section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-bg py-20"><div class="container mx-auto px-6"><div class="text-center mb-16" data-aos="fade-up"><h2 class="text-4xl md:text-5xl font-bold text-white">Our Technical Expertise</h2><p class="text-gray-400 mt-3 text-lg">The tools and technologies we master.</p></div><div class="max-w-4xl mx-auto space-y-8" data-aos="fade-up" data-aos-delay="100"><div><div class="flex justify-between mb-1"><span class="text-base font-medium text-white">React & Next.js</span><span class="text-sm font-medium text-white">95%</span></div><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="skill-bar-fill h-2.5 rounded-full" style="width: 0%" data-width="95%"></div></div></div><div><div class="flex justify-between mb-1"><span class="text-base font-medium text-white">Three.js & WebGL</span><span class="text-sm font-medium text-white">90%</span></div><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="skill-bar-fill h-2.5 rounded-full" style="width: 0%" data-width="90%"></div></div></div><div><div class="flex justify-between mb-1"><span class="text-base font-medium text-white">Node.js & Backend</span><span class="text-sm font-medium text-white">85%</span></div><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="skill-bar-fill h-2.5 rounded-full" style="width: 0%" data-width="85%"></div></div></div><div><div class="flex justify-between mb-1"><span class="text-base font-medium text-white">UI/UX & Figma</span><span class="text-sm font-medium text-white">98%</span></div><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="skill-bar-fill h-2.5 rounded-full" style="width: 0%" data-width="98%"></div></div></div></div></div></section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20"><div class="container mx-auto px-6"><div class="text-center mb-12" data-aos="fade-up"><h2 class="text-4xl md:text-5xl font-bold text-white">Let's Create Together</h2><p class="text-gray-400 mt-3 text-lg">Ready to start your next project? Get in touch.</p></div><div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100"><form id="contact-form" action="https://formspree.io/f/xblkqrvw" method="POST" class="bg-gray-900 p-8 rounded-xl shadow-lg card-glow"><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><input type="text" name="name" placeholder="Your Name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required><input type="email" name="email" placeholder="Your Email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required></div><div class="mb-6"><input type="text" name="subject" placeholder="Subject" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required></div><div class="mb-6"><textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea></div><div class="text-center"><button type="submit" class="bg-indigo-600 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-indigo-700 transition duration-300">Send Message</button></div></form><p id="form-status" class="text-center mt-4"></p></div></div></section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12 border-t border-gray-800"><div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-4 gap-8"><div class="col-span-1 md:col-span-2 lg:col-span-1"><h3 class="text-2xl font-bold text-white mb-2">Daily Developers</h3><p class="pr-8">Engineering the future of the web.</p></div><div class="lg:col-start-2"><h4 class="font-bold text-white mb-4">Navigate</h4><ul><li class="mb-2"><a href="#services" class="hover:text-white transition">Services</a></li><li class="mb-2"><a href="#portfolio" class="hover:text-white transition">Work</a></li><li class="mb-2"><a href="#skills" class="hover:text-white transition">Skills</a></li></ul></div><div><h4 class="font-bold text-white mb-4">Legal</h4><ul><li class="mb-2"><a href="javascript:void(0)" id="open-terms" class="hover:text-white transition">Terms of Service</a></li><li class="mb-2"><a href="javascript:void(0)" id="open-privacy" class="hover:text-white transition">Privacy Policy</a></li></ul></div><div><h4 class="font-bold text-white mb-4">Connect</h4><ul><li class="mb-2"><a href="mailto:contact@dailydevs.com" class="hover:text-white transition">coming soon.....</a></li><li class="mb-2"><a href="tel:+1234567890" class="hover:text-white transition">coming soon.....</a></li></ul></div></div><div class="mt-8 border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center"><p>&copy; 2025 Daily Developers. All Rights Reserved.</p><div class="flex space-x-6 mt-4 md:mt-0"><a href="https://x.com/NITINYADAV2188" class="hover:text-white">Twitter</a><a href="https://www.linkedin.com/in/nitin-yadav-681850299" class="hover:text-white">LinkedIn</a><a href="https://github.com/nitinyadav2188" class="hover:text-white">GitHub</a></div></div></div></footer>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+        <div class="bg-gray-900 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col" data-aos="fade-up">
+            <div class="flex justify-between items-center p-5 border-b border-gray-700">
+                <h3 class="text-2xl font-bold text-white">Terms of Service</h3>
+                <button id="close-terms" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto">
+                <h4 class="font-bold text-white text-lg">1. Introduction</h4>
+                <p>Welcome to Daily Developers. These Terms of Service govern your use of our website and the services we offer. By accessing our site, you agree to these terms in full.</p>
+                <h4 class="font-bold text-white text-lg">2. Services</h4>
+                <p>We provide web development, UI/UX design, and brand identity services. All project details, timelines, and costs will be outlined in a separate, formal proposal. The scope of work is limited to what is explicitly stated in the signed agreement.</p>
+                <h4 class="font-bold text-white text-lg">3. Intellectual Property</h4>
+                <p>Upon final payment, the client is granted full ownership of the final, delivered project files. We retain the right to display the project in our portfolio and marketing materials unless otherwise agreed upon in writing.</p>
+                <h4 class="font-bold text-white text-lg">4. Limitation of Liability</h4>
+                <p>Daily Developers will not be liable for any indirect, special, or consequential damages, or any loss of revenue, profits, or data, arising in connection with this agreement or our services.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+        <div class="bg-gray-900 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col" data-aos="fade-up">
+            <div class="flex justify-between items-center p-5 border-b border-gray-700">
+                <h3 class="text-2xl font-bold text-white">Privacy Policy</h3>
+                <button id="close-privacy" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto">
+                <h4 class="font-bold text-white text-lg">1. Information We Collect</h4>
+                <p>We collect information you provide directly to us through our contact form, such as your name, email address, and message. We may also collect non-personal data through cookies to improve our website experience.</p>
+                <h4 class="font-bold text-white text-lg">2. How We Use Information</h4>
+                <p>The information collected is used solely to respond to your inquiries, provide our services, and improve our website. We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</p>
+                <h4 class="font-bold text-white text-lg">3. Data Security</h4>
+                <p>We implement a variety of security measures to maintain the safety of your personal information. All communications through our contact form are handled by a secure third-party service (Formspree).</p>
+                <h4 class="font-bold text-white text-lg">4. Your Consent</h4>
+                <p>By using our site, you consent to our website's privacy policy.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true });
+
+        // Custom Cursor
+        const cursorDot = document.querySelector("#cursor-dot");
+        const cursorOutline = document.querySelector("#cursor-outline");
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.style.transform = `translate(${posX - (cursorOutline.offsetWidth / 2)}px, ${posY - (cursorOutline.offsetHeight / 2)}px)`;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('#mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Contact Form
+        const form = document.getElementById('contact-form');
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const data = new FormData(e.target);
+            fetch(e.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }})
+            .then(res => {
+                if (res.ok) {
+                    document.getElementById('form-status').textContent = "Thanks for your message!";
+                    form.reset();
+                } else {
+                    document.getElementById('form-status').textContent = "Oops! There was a problem.";
+                }
+            }).catch(() => document.getElementById('form-status').textContent = "Oops! There was a problem.");
+        });
+        
+        // Skills Bar Animation
+        const skillsSection = document.querySelector('#skills');
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const animateSkills = () => {
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+        };
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkills();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(skillsSection);
+
+        // Modal Logic
+        const termsModal = document.getElementById('terms-modal');
+        const privacyModal = document.getElementById('privacy-modal');
+        const openTermsBtn = document.getElementById('open-terms');
+        const openPrivacyBtn = document.getElementById('open-privacy');
+        const closeTermsBtn = document.getElementById('close-terms');
+        const closePrivacyBtn = document.getElementById('close-privacy');
+
+        function openModal(modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal(modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        openTermsBtn.addEventListener('click', () => openModal(termsModal));
+        openPrivacyBtn.addEventListener('click', () => openModal(privacyModal));
+        closeTermsBtn.addEventListener('click', () => closeModal(termsModal));
+        closePrivacyBtn.addEventListener('click', () => closeModal(privacyModal));
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === termsModal) closeModal(termsModal);
+            if (e.target === privacyModal) closeModal(privacyModal);
+        });
+
+        // Three.js Particle System
+        let scene, camera, renderer, particles, mouseX = 0, mouseY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        function initThree() {
+            const container = document.getElementById('three-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 1000;
+
+            const particleCount = 5000;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const posArray = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 2000;
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 1.5,
+                color: 0x8b5cf6,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+
+            particles = new THREE.Points(particlesGeometry, particleMaterial);
+            scene.add(particles);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) / 2;
+            mouseY = (event.clientY - windowHalfY) / 2;
+        }
+
+        function animateThree() {
+            requestAnimationFrame(animateThree);
+            const time = Date.now() * 0.00005;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            particles.rotation.y = time * 2;
+            renderer.render(scene, camera);
+        }
+
+        initThree();
+        animateThree();
+    </script>
+</body>
+</html>
